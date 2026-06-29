@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="fi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YHDESSÄ – toimintamalli lasten arkiaktiivisuuden tukemiseen</title>
+<meta name="description" content="YHDESSÄ on kodin ja koulun yhteinen toimintamalli, joka edistää lasten arkiaktiivisuutta koulun ja kodin arjessa.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Ccircle cx='16' cy='16' r='15' fill='%23F4F1E8'/%3E%3Ccircle cx='16' cy='16' r='11' fill='none' stroke='%23B79A57' stroke-width='2'/%3E%3Ccircle cx='16' cy='5.5' r='3' fill='%235E7150'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@500;600;700;800&family=Hanken+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --fd:"Schibsted Grotesk",system-ui,sans-serif;
+  --paper:#FBFAF4;
+  --paper-2:#EEEEE5;
+  --paper-3:#E4E3D6;
+  --ink:#222E27;
+  --ink-soft:#586259;
+  --sage:#3F5C49;
+  --sage-soft:#9DB0A0;
+  --gold:#B59A60;
+  --gold-deep:#8C753F;
+  --gold-soft:#D7C28C;
+  --autumn:#C5803A;
+  --winter:#6E8AA0;
+  --spring:#7FA055;
+  --summer:#D9AE4C;
+  --shadow:0 18px 50px -24px rgba(44,54,42,.45);
+  --shadow-sm:0 8px 24px -14px rgba(44,54,42,.4);
+  --r:18px;
+  --maxw:1140px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--paper);
+  color:var(--ink);
+  font-family:"Hanken Grotesk",system-ui,sans-serif;
+  font-size:clamp(16px,1.05vw,18px);
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+h1,h2,h3,h4{font-family:var(--fd);font-weight:700;line-height:1.1;letter-spacing:-.025em;margin:0}
+p{margin:0}
+img{max-width:100%;display:block}
+a{color:inherit}
+.wrap{width:min(100% - 2.6rem,var(--maxw));margin-inline:auto}
+.eyebrow{
+  font-size:.78rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gold-deep);margin:0 0 1rem;display:flex;align-items:center;gap:.6rem;
+}
+.eyebrow::before{content:"";width:26px;height:1px;background:var(--gold)}
+.section{padding:clamp(3.6rem,8vw,6.6rem) 0;scroll-margin-top:5rem}
+
+/* ---------- NAV ---------- */
+.nav{
+  position:sticky;top:0;z-index:50;
+  background:color-mix(in srgb,var(--paper) 86%,transparent);
+  backdrop-filter:blur(10px);
+  border-bottom:1px solid color-mix(in srgb,var(--ink) 8%,transparent);
+}
+.nav-in{display:flex;align-items:center;justify-content:space-between;height:4.4rem}
+.brand{font-family:var(--fd);font-weight:600;font-size:1.32rem;letter-spacing:.04em;display:flex;align-items:center;gap:.55rem;text-decoration:none}
+.brand .mark{width:20px;height:20px;flex:none}
+.nav-links{display:flex;gap:1.9rem;align-items:center;list-style:none;margin:0;padding:0}
+.nav-links a{text-decoration:none;font-weight:500;font-size:.96rem;color:var(--ink-soft);transition:color .2s}
+.nav-links a:hover{color:var(--sage)}
+.nav-toggle{display:none;background:none;border:0;cursor:pointer;padding:.4rem;color:var(--ink)}
+.nav-toggle svg{width:26px;height:26px}
+
+/* ---------- HERO ---------- */
+.hero{position:relative;overflow:hidden;padding-top:clamp(2.4rem,5vw,4rem)}
+.hero::before{ /* faint vuosikello echo */
+  content:"";position:absolute;right:-220px;top:-160px;width:560px;height:560px;border-radius:50%;
+  border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);opacity:.5;pointer-events:none;
+}
+.hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(2rem,4vw,4rem);align-items:center}
+.hero h1{font-size:clamp(3.4rem,9vw,6.2rem);letter-spacing:-.03em;margin:.2rem 0 .1rem}
+.hero .tagline{font-family:var(--fd);font-weight:600;font-style:normal;font-size:clamp(1.3rem,2.4vw,1.7rem);color:var(--sage);margin-bottom:1.4rem}
+.hero p.lead{font-size:1.1rem;color:var(--ink-soft);max-width:34ch;margin-bottom:1.8rem}
+.theme-chip{
+  display:inline-flex;align-items:center;gap:.55rem;background:var(--paper-2);
+  border:1px solid color-mix(in srgb,var(--gold) 40%,transparent);
+  border-radius:999px;padding:.5rem 1rem;font-size:.86rem;font-weight:600;color:var(--gold-deep);margin-bottom:1.9rem
+}
+.theme-chip::before{content:"";width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.cta-row{display:flex;flex-wrap:wrap;gap:1.2rem;align-items:center}
+.hero-figure{position:relative}
+.hero-figure img{border-radius:calc(var(--r) + 8px);box-shadow:var(--shadow);width:100%;aspect-ratio:4/3.1;object-fit:cover}
+.hero-figure .cap{
+  position:absolute;left:1.1rem;bottom:1.1rem;background:color-mix(in srgb,var(--ink) 78%,transparent);
+  color:var(--paper);font-size:.78rem;font-weight:500;padding:.4rem .8rem;border-radius:999px;backdrop-filter:blur(4px)
+}
+
+/* ---------- QUICK NAV TILES ---------- */
+.quicknav-wrap{padding:0 0 clamp(2.4rem,6vw,4rem)}
+.quicknav{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem}
+.qn{
+  display:flex;flex-direction:column;gap:.35rem;text-decoration:none;
+  background:var(--paper-2);border:1px solid color-mix(in srgb,var(--ink) 9%,transparent);
+  border-radius:16px;padding:1.3rem 1.4rem;transition:transform .16s,box-shadow .2s,border-color .2s;
+}
+.qn:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm);border-color:var(--sage)}
+.qn .qn-k{font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--gold-deep)}
+.qn b{font-family:var(--fd);font-weight:600;font-size:1.25rem;line-height:1.1}
+.qn span.d{font-size:.9rem;color:var(--ink-soft)}
+.qn .ar{color:var(--sage);font-weight:600;margin-top:.3rem;transition:transform .2s}
+.qn:hover .ar{transform:translateX(4px)}
+
+/* ---------- BUTTONS / ARROW LINKS ---------- */
+.btn{
+  --c:var(--sage);
+  display:inline-flex;align-items:center;gap:.6rem;text-decoration:none;cursor:pointer;
+  font-weight:600;font-size:.98rem;padding:.82rem 1.4rem;border-radius:999px;border:1.5px solid var(--c);
+  background:var(--c);color:var(--paper);transition:transform .18s ease,background .2s,box-shadow .2s;
+}
+.btn .ar{transition:transform .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm)}
+.btn:hover .ar{transform:translateX(4px)}
+.btn.ghost{background:transparent;color:var(--ink);border-color:color-mix(in srgb,var(--ink) 24%,transparent)}
+.btn.ghost:hover{border-color:var(--sage);color:var(--sage)}
+.arrow-link{display:inline-flex;align-items:center;gap:.45rem;text-decoration:none;font-weight:600;color:var(--sage)}
+.arrow-link .ar{transition:transform .2s}
+.arrow-link:hover .ar{transform:translateX(4px)}
+
+/* ---------- PERIAATTEET ---------- */
+.sec-head{max-width:60ch;margin-bottom:2.8rem}
+.sec-head h2{font-size:clamp(2rem,4.4vw,2.9rem)}
+.sec-head p{color:var(--ink-soft);margin-top:1rem;font-size:1.08rem}
+.principles{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1.1rem}
+.p-card{
+  background:var(--paper-2);border-radius:var(--r);padding:1.7rem 1.5rem;
+  border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);position:relative;overflow:hidden;
+}
+.p-card::after{content:"";position:absolute;inset:0 auto 0 0;width:4px;background:var(--gold);opacity:.0;transition:opacity .25s}
+.p-card:hover::after{opacity:1}
+.p-card .num{font-family:var(--fd);font-size:.9rem;color:var(--gold-deep);font-weight:600;letter-spacing:.05em}
+.p-card h3{font-size:1.3rem;margin:.5rem 0 .55rem}
+.p-card p{font-size:.96rem;color:var(--ink-soft)}
+
+/* ---------- VAIHEET WHEEL ---------- */
+.vaiheet{background:var(--paper-2);border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent);border-bottom:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.wheel-grid{display:grid;grid-template-columns:.9fr 1.1fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.wheel-wrap{display:flex;justify-content:center}
+.wheel{width:min(100%,440px);height:auto;overflow:visible}
+.wnode{cursor:pointer}
+.wnode circle{fill:var(--paper);stroke:var(--gold);stroke-width:2;transition:fill .25s,transform .25s;transform-origin:center;transform-box:fill-box}
+.wnode:hover circle,.wnode:focus-visible circle{fill:color-mix(in srgb,var(--sage-soft) 38%,var(--paper))}
+.wnode .wlabel{font-family:"Hanken Grotesk",sans-serif;font-weight:600;font-size:14.5px;fill:var(--ink);text-anchor:middle;pointer-events:none}
+.wnode .wnum{font-family:var(--fd);font-size:12px;fill:var(--gold-deep);text-anchor:middle;font-weight:600;pointer-events:none}
+.wnode:focus-visible{outline:none}
+.warrow{fill:none;stroke:var(--sage);stroke-width:2.4;stroke-linecap:round}
+.wcenter{font-family:var(--fd);font-weight:600;fill:var(--sage);text-anchor:middle;font-size:12px;letter-spacing:.04em}
+.wheel-copy h2{font-size:clamp(2rem,4.4vw,2.9rem)}
+.wheel-copy p{color:var(--ink-soft);margin-top:1rem;font-size:1.08rem}
+.wheel-copy .hint{margin-top:1.4rem;font-size:.9rem;color:var(--gold-deep);font-weight:600;display:flex;align-items:center;gap:.5rem}
+.wheel-copy .hint::before{content:"";width:18px;height:18px;border:2px solid var(--gold);border-radius:50%;border-top-color:transparent;display:inline-block}
+
+/* ---------- PHASE SECTIONS ---------- */
+.phase{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.6rem,4vw,3.6rem);align-items:center}
+.phase.flip .phase-media{order:2}
+.phase-media img{border-radius:var(--r);box-shadow:var(--shadow);width:100%;aspect-ratio:3/2.2;object-fit:cover}
+.phase-tag{font-family:var(--fd);font-size:.92rem;color:var(--gold-deep);font-weight:600;letter-spacing:.08em}
+.phase h2{font-size:clamp(1.9rem,4vw,2.7rem);margin:.45rem 0 1rem}
+.phase .goal{font-size:1.1rem;color:var(--ink-soft);margin-bottom:1.4rem}
+.meta{display:grid;gap:1rem;margin-top:.4rem}
+.meta-row{display:grid;grid-template-columns:auto 1fr;gap:1rem;align-items:start}
+.meta-k{font-size:.74rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--sage);padding-top:.2rem;white-space:nowrap}
+.meta-v{font-size:.98rem;color:var(--ink)}
+.meta-v a{color:var(--sage);font-weight:600;text-decoration:underline;text-underline-offset:3px;text-decoration-color:color-mix(in srgb,var(--sage) 40%,transparent);transition:text-decoration-color .2s}
+.meta-v a:hover{text-decoration-color:var(--sage)}
+.meta-v ul{margin:.1rem 0 0;padding-left:1.1rem}
+.meta-v li{margin:.2rem 0}
+
+/* ---------- LUPAUS BAND ---------- */
+.lupaus{background:var(--sage);color:var(--paper)}
+.lupaus .wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:clamp(1.6rem,4vw,3.4rem);align-items:center}
+.lupaus .eyebrow{color:var(--gold-soft)}
+.lupaus .eyebrow::before{background:var(--gold-soft)}
+.lupaus h2{font-size:clamp(2rem,4.4vw,3rem);color:var(--paper)}
+.lupaus h2 em{font-style:normal;color:var(--gold-soft)}
+.lupaus ul{list-style:none;margin:0;padding:0;display:grid;gap:.9rem}
+.lupaus li{display:grid;grid-template-columns:auto 1fr;gap:.9rem;align-items:start;font-size:1.05rem;line-height:1.45}
+.lupaus li::before{content:"";width:11px;height:11px;border-radius:50%;background:var(--gold-soft);margin-top:.5rem}
+
+/* ---------- VUOSIKELLO SLIDER ---------- */
+.vk-head{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:flex-end;gap:1.4rem;margin-bottom:2rem}
+.vk-controls{display:flex;gap:.7rem}
+.round-btn{
+  width:52px;height:52px;border-radius:50%;border:1.5px solid color-mix(in srgb,var(--ink) 22%,transparent);
+  background:var(--paper);cursor:pointer;display:grid;place-items:center;transition:background .2s,border-color .2s,transform .15s,opacity .2s;color:var(--ink)
+}
+.round-btn:hover{background:var(--sage);border-color:var(--sage);color:var(--paper)}
+.round-btn:active{transform:scale(.94)}
+.round-btn:disabled{opacity:.32;cursor:default;background:var(--paper);border-color:color-mix(in srgb,var(--ink) 18%,transparent);color:var(--ink)}
+.round-btn svg{width:22px;height:22px}
+.vk-track{display:flex;gap:1.4rem;overflow-x:auto;scroll-snap-type:x mandatory;scroll-behavior:smooth;padding:.4rem .2rem 1.4rem;margin:0 -.2rem;scrollbar-width:none}
+.vk-track::-webkit-scrollbar{display:none}
+.vk-card{
+  scroll-snap-align:start;flex:0 0 min(85%,520px);background:var(--paper);border-radius:var(--r);overflow:hidden;
+  box-shadow:var(--shadow-sm);border:1px solid color-mix(in srgb,var(--ink) 7%,transparent);display:flex;flex-direction:column;
+  --tint:var(--gold);
+}
+.vk-card .vk-img{position:relative;aspect-ratio:16/8}
+.vk-card .vk-img img{width:100%;height:100%;object-fit:cover}
+.vk-season{position:absolute;left:1rem;top:1rem;background:var(--tint);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.04em;padding:.4rem .85rem;border-radius:999px}
+.vk-body{padding:1.6rem 1.6rem 1.8rem;display:flex;flex-direction:column;gap:.7rem;flex:1}
+.vk-body h3{font-size:1.45rem;border-left:4px solid var(--tint);padding-left:.8rem;margin-left:-.2rem}
+.vk-goal{color:var(--ink-soft);font-size:1rem}
+.vk-body ul{margin:.3rem 0 0;padding-left:1.1rem;color:var(--ink);font-size:.95rem}
+.vk-body li{margin:.3rem 0}
+.vk-dots{display:flex;gap:.5rem;justify-content:center;margin-top:.4rem}
+.vk-dot{width:8px;height:8px;border-radius:50%;background:color-mix(in srgb,var(--ink) 20%,transparent);border:0;padding:0;cursor:pointer;transition:width .25s,background .25s}
+.vk-dot.active{width:26px;border-radius:999px;background:var(--sage)}
+
+/* ---------- MATERIAALIPANKKI ---------- */
+.materiaalit{background:var(--paper-2);border-top:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+.mat-note{font-size:.9rem;color:var(--ink-soft);background:var(--paper);border:1px dashed color-mix(in srgb,var(--gold) 55%,transparent);border-radius:12px;padding:.8rem 1.1rem;margin-bottom:2rem;display:inline-flex;gap:.6rem;align-items:center}
+.mat-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(255px,1fr));gap:1rem}
+.mat-item{
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;text-decoration:none;
+  background:var(--paper);border:1px solid color-mix(in srgb,var(--ink) 10%,transparent);border-radius:14px;
+  padding:1.1rem 1.25rem;transition:transform .16s,box-shadow .2s,border-color .2s;
+}
+.mat-item:hover{transform:translateY(-2px);box-shadow:var(--shadow-sm);border-color:var(--sage)}
+.mat-item .mt{display:flex;flex-direction:column;gap:.2rem}
+.mat-item .mt b{font-weight:600;font-size:1rem}
+.mat-item .mt span{font-size:.78rem;color:var(--ink-soft)}
+.mat-item .tulossa{font-size:.68rem;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--gold-deep);background:color-mix(in srgb,var(--gold) 22%,var(--paper));padding:.25rem .55rem;border-radius:999px;white-space:nowrap}
+.mat-item .pdf-tag{font-size:.66rem;font-weight:700;letter-spacing:.08em;color:var(--sage);background:color-mix(in srgb,var(--sage) 14%,var(--paper));border:1px solid color-mix(in srgb,var(--sage) 30%,transparent);padding:.22rem .5rem;border-radius:6px;white-space:nowrap;flex:none}
+.mat-item .ar{color:var(--sage);flex:none;transition:transform .2s}
+.mat-item:hover .ar{transform:translateX(3px)}
+
+/* ---------- LINKKIVINKIT ---------- */
+.links-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.1rem}
+.link-card{
+  display:block;text-decoration:none;background:var(--paper-2);border-radius:var(--r);padding:1.7rem 1.6rem;
+  border:1px solid color-mix(in srgb,var(--ink) 8%,transparent);transition:transform .16s,box-shadow .2s
+}
+.link-card:hover{transform:translateY(-3px);box-shadow:var(--shadow-sm)}
+.link-card .src{font-size:.78rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gold-deep)}
+.link-card h3{font-size:1.35rem;margin:.5rem 0 .6rem}
+.link-card p{font-size:.95rem;color:var(--ink-soft);margin-bottom:1.1rem}
+
+/* ---------- KÄYTTÖÖNOTTO ---------- */
+.kayttoonotto{background:var(--ink);color:var(--paper)}
+.kayttoonotto .eyebrow{color:var(--gold-soft)}
+.kayttoonotto .eyebrow::before{background:var(--gold-soft)}
+.kayttoonotto h2{font-size:clamp(2rem,4.4vw,3rem);color:var(--paper);max-width:18ch}
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1.4rem;margin-top:2.6rem;counter-reset:s}
+.step{position:relative;padding-top:1.4rem;border-top:2px solid color-mix(in srgb,var(--gold-soft) 50%,transparent)}
+.step .sn{font-family:var(--fd);font-size:2.2rem;color:var(--gold-soft);display:block;line-height:1;margin-bottom:.6rem}
+.step p{font-size:1.02rem;color:color-mix(in srgb,var(--paper) 88%,transparent)}
+.toivotus{margin-top:3rem;font-family:var(--fd);font-weight:600;font-size:clamp(1.3rem,2.6vw,1.8rem);color:var(--gold-soft);max-width:30ch;line-height:1.25;letter-spacing:-.01em}
+
+/* ---------- TAUSTA / FOOTER ---------- */
+.tausta-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:clamp(1.6rem,4vw,3.4rem)}
+.tausta p{color:var(--ink-soft);font-size:1.05rem}
+.contact{background:var(--paper-2);border-radius:var(--r);padding:1.8rem;border:1px solid color-mix(in srgb,var(--ink) 8%,transparent)}
+.contact h3{font-size:1.3rem;margin-bottom:1rem}
+.person{padding:.8rem 0;border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent)}
+.person:last-child{border-bottom:0}
+.person b{font-weight:600}
+.person span{display:block;font-size:.88rem;color:var(--ink-soft)}
+.person a{color:var(--sage);font-weight:600;text-decoration:none}
+.person a:hover{text-decoration:underline}
+footer{background:var(--sage);color:var(--paper);padding:2.4rem 0;text-align:center}
+footer .brand-f{font-family:var(--fd);font-size:1.2rem;letter-spacing:.05em}
+footer p{font-size:.85rem;color:color-mix(in srgb,var(--paper) 80%,transparent);margin-top:.5rem}
+footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,transparent);margin-top:1.1rem;max-width:60ch;margin-inline:auto;line-height:1.5}
+
+/* ---------- REVEAL ---------- */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.in{opacity:1;transform:none}
+
+/* ---------- RESPONSIVE ---------- */
+@media(max-width:860px){
+  .nav-links{
+    position:absolute;top:4.4rem;left:0;right:0;background:var(--paper);flex-direction:column;
+    gap:0;padding:.5rem 1.3rem 1.2rem;border-bottom:1px solid color-mix(in srgb,var(--ink) 10%,transparent);
+    box-shadow:var(--shadow-sm);display:none
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.7rem 0;width:100%;border-bottom:1px solid color-mix(in srgb,var(--ink) 7%,transparent)}
+  .nav-toggle{display:block}
+  .hero-grid,.wheel-grid,.phase,.phase.flip .phase-media,.lupaus .wrap,.tausta-grid,.quicknav{grid-template-columns:1fr}
+  .phase.flip .phase-media{order:0}
+  .hero-figure{order:-1}
+  .wheel-wrap{order:-1}
+}
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .reveal{opacity:1;transform:none;transition:none}
+  *{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<header class="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="#top">
+      <svg class="mark" viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11" fill="none" stroke="#B79A57" stroke-width="2"/><circle cx="16" cy="5.5" r="3" fill="#5E7150"/></svg>
+      YHDESSÄ
+    </a>
+    <button class="nav-toggle" aria-label="Avaa valikko" aria-expanded="false">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+    </button>
+    <ul class="nav-links">
+      <li><a href="#periaatteet">Periaatteet</a></li>
+      <li><a href="#vaiheet">Vaiheet</a></li>
+      <li><a href="#vuosikello">Vuosikello</a></li>
+      <li><a href="#materiaalit">Materiaalit</a></li>
+      <li><a href="#yhteystiedot">Yhteystiedot</a></li>
+    </ul>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero section" id="top">
+  <div class="wrap hero-grid">
+    <div>
+      <p class="eyebrow">Kodin ja koulun yhteinen toimintamalli</p>
+      <h1>YHDESSÄ</h1>
+      <p class="tagline">Lisää liikettä lasten arkeen – pienillä teoilla.</p>
+      <p class="lead">Kodin ja koulun yhteinen toimintamalli, jonka tavoitteena on edistää lasten arkiaktiivisuutta koulun ja kodin arjessa.</p>
+      <p class="theme-chip">Lukuvuoden teema: Pienillä teoilla lisää liikettä</p>
+      <div class="cta-row">
+        <a class="btn" href="#kayttoonotto">Näin otat mallin käyttöön <span class="ar">→</span></a>
+      </div>
+    </div>
+    <figure class="hero-figure">
+      <img src="kuvia/hero-juoksu.jpg" alt="Joukko alakoululaisia juoksee reput selässä kohti koulun pihaa.">
+      <figcaption class="cap">Arkiaktiivisuutta koulun ja kodin arkeen</figcaption>
+    </figure>
+  </div>
+</section>
+
+<!-- QUICK NAV -->
+<section class="quicknav-wrap">
+  <div class="wrap quicknav">
+    <a class="qn" href="#vaiheet"><span class="qn-k">01</span><b>Vaiheet</b><span class="d">Neljä vaihetta, jotka toistuvat joka lukuvuosi.</span><span class="ar">Katso kierto →</span></a>
+    <a class="qn" href="#vuosikello"><span class="qn-k">02</span><b>Vuosikello</b><span class="d">Lukuvuoden neljä yhteistä kokonaisuutta.</span><span class="ar">Selaa kaudet →</span></a>
+    <a class="qn" href="#materiaalit"><span class="qn-k">03</span><b>Materiaalit</b><span class="d">Valmiit pohjat käyttöönottoon.</span><span class="ar">Avaa pankki →</span></a>
+  </div>
+</section>
+
+<!-- PERIAATTEET -->
+<section class="section" id="periaatteet">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Periaatteet</p>
+      <h2>Viisi periaatetta, joille toiminta rakentuu</h2>
+      <p>Toimintamallin tarkoituksena on tukea lasten päivittäistä liikkumista tavallisessa arjessa – yhteisten tavoitteiden ja avoimen vuorovaikutuksen avulla.</p>
+    </div>
+    <div class="principles">
+      <article class="p-card reveal"><span class="num">01</span><h3>Kumppanuus</h3><p>Kodin, koulun ja oppilaiden yhteistyö muodostaa toimintamallin perustan. Arkiaktiivisuutta tuetaan yhteisten tavoitteiden ja toimintaperiaatteiden avulla.</p></article>
+      <article class="p-card reveal"><span class="num">02</span><h3>Osallisuus</h3><p>Oppilaat osallistuvat toiminnan suunnitteluun, toteutukseen ja kehittämiseen. Myös huoltajat ja henkilöstö pääsevät vaikuttamaan sisältöihin.</p></article>
+      <article class="p-card reveal"><span class="num">03</span><h3>Arkiaktiivisuus</h3><p>Painopiste on lasten päivittäisessä liikkumisessa: koulumatkoilla, välitunneilla, yhteisillä haasteilla ja kodin pienillä arjen teoilla.</p></article>
+      <article class="p-card reveal"><span class="num">04</span><h3>Matala kynnys</h3><p>Toiminta rakentuu helposti toteutettavista ratkaisuista, jotka eivät vaadi lisäresursseja. Valmiit materiaalit ja vuosikello tukevat käyttöönottoa.</p></article>
+      <article class="p-card reveal"><span class="num">05</span><h3>Jatkuva kehittäminen</h3><p>Toimintaa arvioidaan ja kehitetään vuosittain oppilailta, huoltajilta ja henkilöstöltä kerätyn palautteen perusteella.</p></article>
+    </div>
+  </div>
+</section>
+
+<!-- VAIHEET (WHEEL) -->
+<section class="section vaiheet" id="vaiheet">
+  <div class="wrap wheel-grid">
+    <div class="wheel-wrap reveal">
+      <svg class="wheel" viewBox="0 0 460 460" role="img" aria-label="Toimintamallin neljä vaihetta kiertona: Yhdistetään, Osallistetaan, Mahdollistetaan ja Kehitetään.">
+        <!-- arrows (clockwise) -->
+        <defs>
+          <marker id="ah" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+            <path d="M0 0 L10 5 L0 10 z" fill="var(--sage)"/>
+          </marker>
+        </defs>
+        <path class="warrow" d="M120 188 Q138 138 188 120" marker-end="url(#ah)"/>
+        <path class="warrow" d="M272 120 Q322 138 340 188" marker-end="url(#ah)"/>
+        <path class="warrow" d="M340 272 Q322 322 272 340" marker-end="url(#ah)"/>
+        <path class="warrow" d="M188 340 Q138 322 120 272" marker-end="url(#ah)"/>
+        <!-- center -->
+        <circle cx="230" cy="230" r="40" fill="none" stroke="var(--gold)" stroke-width="1.4" stroke-dasharray="3 5"/>
+        <text class="wcenter" x="230" y="226">lukuvuoden</text>
+        <text class="wcenter" x="230" y="244">kierto</text>
+        <!-- nodes -->
+        <a class="wnode" href="#yhdistetaan" aria-label="Siirry: Yhdistetään">
+          <circle cx="95" cy="230" r="66"/>
+          <text class="wnum" x="95" y="216">01</text>
+          <text class="wlabel" x="95" y="238">Yhdistetään</text>
+        </a>
+        <a class="wnode" href="#osallistetaan" aria-label="Siirry: Osallistetaan">
+          <circle cx="230" cy="95" r="66"/>
+          <text class="wnum" x="230" y="81">02</text>
+          <text class="wlabel" x="230" y="103">Osallistetaan</text>
+        </a>
+        <a class="wnode" href="#mahdollistetaan" aria-label="Siirry: Mahdollistetaan">
+          <circle cx="365" cy="230" r="66"/>
+          <text class="wnum" x="365" y="216">03</text>
+          <text class="wlabel" x="365" y="238">Mahdollistetaan</text>
+        </a>
+        <a class="wnode" href="#kehitetaan" aria-label="Siirry: Kehitetään">
+          <circle cx="230" cy="365" r="66"/>
+          <text class="wnum" x="230" y="351">04</text>
+          <text class="wlabel" x="230" y="373">Kehitetään</text>
+        </a>
+      </svg>
+    </div>
+    <div class="wheel-copy reveal">
+      <p class="eyebrow">Toimintamallin vaiheet</p>
+      <h2>Neljä vaihetta, jotka toistuvat joka lukuvuosi</h2>
+      <p>Toiminta etenee selkeänä kiertona: ensin luodaan yhteinen ymmärrys, sitten osallistetaan oppilaat, mahdollistetaan liikkuminen vuosikellon avulla ja lopuksi kehitetään toimintaa palautteen pohjalta.</p>
+      <p class="hint">Valitse vaihe ympyrästä – pääset suoraan sen kuvaukseen.</p>
+    </div>
+  </div>
+</section>
+
+<!-- YHDISTETÄÄN -->
+<section class="section" id="yhdistetaan">
+  <div class="wrap phase reveal">
+    <div class="phase-media"><img src="kuvia/yhdistetaan.jpg" alt="Aikuisia kohottaa käsiä yhteisessä tilaisuudessa."></div>
+    <div>
+      <span class="phase-tag">01 · Vaihe</span>
+      <h2>Yhdistetään</h2>
+      <p class="goal">Luodaan yhteinen ymmärrys kodin, koulun ja oppilaiden välille lasten arkiaktiivisuuden merkityksestä ja yhteisistä toimintaperiaatteista.</p>
+      <div class="meta">
+        <div class="meta-row"><div class="meta-k">Ajankohta</div><div class="meta-v">Lukuvuoden alussa</div></div>
+        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/aloitusviesti-huoltajille.html" target="_blank" rel="noopener">Aloitusviesti huoltajille</a></li><li><a href="materiaalipankki/suunnitteluillan-runko.html" target="_blank" rel="noopener">Yhteinen suunnitteluilta vanhempainillan yhteydessä</a> (esittely, teema ja lupaus)</li></ul></div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Rehtori ja luokanopettajat sekä oppilashuollon edustaja (esim. koulukuraattori tai terveydenhoitaja).</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LUPAUS -->
+<section class="lupaus section">
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">Lukuvuoden lupaus</p>
+      <h2><em>YHDESSÄ</em> lupaamme</h2>
+    </div>
+    <ul>
+      <li>Kannustamme lapsia aktiiviseen arkeen.</li>
+      <li>Tuemme aktiivisia koulumatkoja silloin, kun ne ovat turvallisia ja mahdollisia.</li>
+      <li>Huolehdimme säänmukaisesta pukeutumisesta ja ulkoiluun sopivista varusteista.</li>
+      <li>Kannustamme lasta osallistumaan koulun yhteisiin arkiaktiivisuutta tukeviin toimintoihin.</li>
+      <li>Rakennamme yhdessä myönteistä ja kannustavaa toimintakulttuuria.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- OSALLISTETÄÄN -->
+<section class="section" id="osallistetaan">
+  <div class="wrap phase flip reveal">
+    <div class="phase-media"><img src="kuvia/osallistetaan.jpg" alt="Ihmisiä ideoi yhdessä pöydän ääressä, jolla on värikkäitä kuvioita."></div>
+    <div>
+      <span class="phase-tag">02 · Vaihe</span>
+      <h2>Osallistetaan</h2>
+      <p class="goal">Lisätään oppilaiden osallisuutta ja vaikutusmahdollisuuksia arkiaktiivisuuden suunnittelussa sekä hyödynnetään heidän näkemyksiään toiminnan kehittämisessä.</p>
+      <div class="meta">
+        <div class="meta-row"><div class="meta-k">Ajankohta</div><div class="meta-v">Lukuvuoden alussa</div></div>
+        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/oppilaiden-ideointituokio.html" target="_blank" rel="noopener">Oppilaiden ideointituokio luokassa</a></li><li><a href="materiaalipankki/ideaseinan-ohje.html" target="_blank" rel="noopener">Oppilaskunnan ideaseinä</a></li></ul></div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Luokanopettajat (ideointituokiot), oppilaskunta (ideaseinä) ja oppilaat.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAHDOLLISTETAAN + VUOSIKELLO -->
+<section class="section" id="mahdollistetaan">
+  <div class="wrap phase reveal">
+    <div class="phase-media"><img src="kuvia/mahdollistetaan.jpg" alt="Lapsia piirtää liiduilla pihan asfalttiin."></div>
+    <div>
+      <span class="phase-tag">03 · Vaihe</span>
+      <h2>Mahdollistetaan</h2>
+      <p class="goal">Mahdollistetaan lasten arkiaktiivisuus helposti toteutettavien, yhteisöllisten ja osallistavien toimintojen avulla koulun arjessa.</p>
+      <div class="meta">
+        <div class="meta-row"><div class="meta-k">Työkalu</div><div class="meta-v">YHDESSÄ-vuosikello: lukuvuoden aikana toteutetaan neljä yhteistä arkiaktiivisuutta tukevaa kokonaisuutta.</div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Koulun henkilöstö, huoltajat ja oppilaat.</div></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrap" id="vuosikello" style="margin-top:clamp(2.6rem,5vw,4rem)">
+    <div class="vk-head reveal">
+      <div class="sec-head" style="margin-bottom:0">
+        <p class="eyebrow">YHDESSÄ-vuosikello</p>
+        <h2>Lukuvuosi liikkuen</h2>
+        <p>Neljä kokonaisuutta, jotka rytmittävät lukuvuoden – syksystä kevääseen.</p>
+      </div>
+      <div class="vk-controls">
+        <button class="round-btn" id="vkPrev" aria-label="Edellinen kausi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg></button>
+        <button class="round-btn" id="vkNext" aria-label="Seuraava kausi"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 6l6 6-6 6"/></svg></button>
+      </div>
+    </div>
+
+    <div class="vk-track" id="vkTrack" tabindex="0" aria-label="Vuosikellon kaudet">
+      <article class="vk-card" style="--tint:var(--summer)">
+        <div class="vk-img"><span class="vk-season">Elo–syyskuu</span><img src="kuvia/yhdistetaan.jpg" alt="Yhteinen suunnitteluilta."></div>
+        <div class="vk-body">
+          <h3>Yhteinen suunnitteluilta</h3>
+          <p class="vk-goal">Käynnistetään lukuvuosi yhteisesti ja vahvistetaan kodin ja koulun kumppanuutta.</p>
+          <ul>
+            <li>Esitellään toimintamalli ja lukuvuoden tavoitteet</li>
+            <li>Sovitaan yhteisistä käytännöistä, mm. varavaatetus ja koulumatkat</li>
+            <li>Kerätään huoltajien ja oppilaiden näkemyksiä</li>
+          </ul>
+        </div>
+      </article>
+      <article class="vk-card" style="--tint:var(--autumn)">
+        <div class="vk-img"><span class="vk-season">Loka–marraskuu</span><img src="kuvia/hero-juoksu.jpg" alt="Lapsia juoksemassa."></div>
+        <div class="vk-body">
+          <h3>Luokkien välinen arkiliikkumishaaste</h3>
+          <p class="vk-goal">Lisätään lasten motivaatiota liikkua ja vahvistetaan yhteisöllisyyttä. Haaste kestää neljä viikkoa.</p>
+          <ul>
+            <li>Hyväksytään mm. aktiiviset koulumatkat, välitunti- ja harrastusliikunta sekä ulkoilu</li>
+            <li>Tulokset julkaistaan ilmoitustaululla tai Wilmassa</li>
+            <li>Haaste päätetään yhteiseen palkitsemiseen</li>
+          </ul>
+        </div>
+      </article>
+      <article class="vk-card" style="--tint:var(--winter)">
+        <div class="vk-img"><span class="vk-season">Tammi–maaliskuu</span><img src="kuvia/kausi-talvi.jpg" alt="Lapsi kiipeilytelineessä."></div>
+        <div class="vk-body">
+          <h3>Oppilaiden ideoima liikuntaviikko</h3>
+          <p class="vk-goal">Vahvistetaan lasten osallisuutta ja mahdollisuutta vaikuttaa koulun liikunnalliseen toimintaan.</p>
+          <ul>
+            <li>Ideat on kerätty ideointituokioissa ja ideaseinältä</li>
+            <li>Oppilastoimikunta valitsee henkilöstön kanssa 1–2 toteutettavaa ideaa</li>
+            <li>Ideat toteutetaan tammi–maaliskuun aikana</li>
+          </ul>
+        </div>
+      </article>
+      <article class="vk-card" style="--tint:var(--spring)">
+        <div class="vk-img"><span class="vk-season">Huhti–toukokuu</span><img src="kuvia/kausi-kevat.jpg" alt="Värikkäitä polkupyöriä rivissä."></div>
+        <div class="vk-body">
+          <h3>Koulumatkahaaste</h3>
+          <p class="vk-goal">Vahvistetaan aktiivisia koulumatkoja osana päivittäistä elämäntapaa. Haaste kestää neljä viikkoa.</p>
+          <ul>
+            <li>Oppilas kirjaa päivittäin aktiivisesti kuljetut koulumatkat</li>
+            <li>Tuloksia seurataan luokittain</li>
+            <li>Huoltajat kannustavat ja huolehtivat turvallisuudesta</li>
+          </ul>
+        </div>
+      </article>
+    </div>
+    <div class="vk-dots" id="vkDots" aria-hidden="true"></div>
+  </div>
+</section>
+
+<!-- KEHITETÄÄN -->
+<section class="section" id="kehitetaan">
+  <div class="wrap phase flip reveal">
+    <div class="phase-media"><img src="kuvia/kehitetaan.jpg" alt="Lapsi rakentaa pientä robottiautoa pöydän ääressä."></div>
+    <div>
+      <span class="phase-tag">04 · Vaihe</span>
+      <h2>Kehitetään</h2>
+      <p class="goal">Arvioidaan toiminnan toteutumista, hyödynnetään osallistujien kokemuksia ja kehitetään toimintaa palautteen perusteella seuraavaa lukuvuotta varten.</p>
+      <div class="meta">
+        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li>YHDESSÄ-palautekysely <a href="materiaalipankki/palautekysely-oppilaat.pdf" target="_blank" rel="noopener">oppilaille</a>, <a href="materiaalipankki/palautekysely-huoltajat.pdf" target="_blank" rel="noopener">huoltajille</a> ja <a href="materiaalipankki/palautekysely-henkilosto.pdf" target="_blank" rel="noopener">henkilöstölle</a></li><li>Kehittämispalaveri: Kyselyn tulokset käsitellään esimerkiksi opettajakokouksessa, yhteisöllisessä opiskeluhuoltoryhmässä tai YHDESSÄ-toimintamallista vastaavan työryhmän kokouksessa. Palaverissa päätetään mitä jatketaan, mitä muutetaan ja mitä uusia ideoita otetaan käyttöön.</li></ul></div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Koulun henkilöstö ja oppilashuoltoryhmä, oppilaat ja huoltajat.</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MATERIAALIPANKKI -->
+<section class="section materiaalit" id="materiaalit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Materiaalipankki</p>
+      <h2>Valmiit materiaalit käyttöön</h2>
+      <p>Materiaalit avautuvat uuteen välilehteen.</p>
+    </div>
+    <div class="mat-grid">
+      <a class="mat-item reveal" href="materiaalipankki/aloitusviesti-huoltajille.html" target="_blank" rel="noopener"><span class="mt"><b>Aloitusviesti huoltajille</b><span>Yhdistetään · Wilma-viesti</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/suunnitteluillan-runko.html" target="_blank" rel="noopener"><span class="mt"><b>Suunnitteluillan runko</b><span>Yhdistetään</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/yhdessa-lupaus.html" target="_blank" rel="noopener"><span class="mt"><b>YHDESSÄ-lupaus</b><span>Yhdistetään</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/oppilaiden-ideointituokio.html" target="_blank" rel="noopener"><span class="mt"><b>Oppilaiden ideointituokio</b><span>Osallistetaan · ohje</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/ideaseinan-ohje.html" target="_blank" rel="noopener"><span class="mt"><b>Ideaseinän ohje</b><span>Osallistetaan</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/palautekysely-oppilaat.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · oppilaat</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/palautekysely-huoltajat.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · huoltajat</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/palautekysely-henkilosto.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · henkilöstö</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
+    </div>
+  </div>
+</section>
+
+<!-- LINKKIVINKIT -->
+<section class="section" id="linkkivinkit">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Inspiroidu ja kokeile</p>
+      <h2>Linkkivinkit arkiliikkumiseen</h2>
+    </div>
+    <div class="links-grid">
+      <a class="link-card reveal" href="https://ukkinstituutti.fi/liikkuminen/liikkumisen-ymparistot/arkiliikkuminen/" target="_blank" rel="noopener">
+        <p class="src">UKK-instituutti</p><h3>Arkiliikkuminen</h3>
+        <p>Käytännön vinkkejä siihen, miten lisätä liikettä tavalliseen arkeen.</p>
+        <span class="arrow-link">Tutustu sivustoon <span class="ar">→</span></span>
+      </a>
+      <a class="link-card reveal" href="https://neuvokasperhe.fi/liikkuminen-ja-lepo/" target="_blank" rel="noopener">
+        <p class="src">Neuvokas perhe</p><h3>Perheliikunta</h3>
+        <p>Helppoja leikkejä, videoita ja vinkkejä koko perheen yhteiseen liikkumiseen.</p>
+        <span class="arrow-link">Tutustu sivustoon <span class="ar">→</span></span>
+      </a>
+      <a class="link-card reveal" href="https://liikkuvakoulu.fi/" target="_blank" rel="noopener">
+        <p class="src">Liikkuva koulu</p><h3>Ideoita koulun arkeen</h3>
+        <p>Vinkkejä aktiivisiin välitunteihin, toiminnalliseen opetukseen ja koulumatkoihin.</p>
+        <span class="arrow-link">Tutustu sivustoon <span class="ar">→</span></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- KÄYTTÖÖNOTTO -->
+<section class="section kayttoonotto" id="kayttoonotto">
+  <div class="wrap">
+    <p class="eyebrow reveal">Käyttöönotto</p>
+    <h2 class="reveal">Näin otat mallin käyttöön</h2>
+    <div class="steps">
+      <div class="step reveal"><span class="sn">1</span><p>Lähetä aloitusviesti huoltajille</p></div>
+      <div class="step reveal"><span class="sn">2</span><p>Järjestä yhteinen suunnitteluilta</p></div>
+      <div class="step reveal"><span class="sn">3</span><p>Toteuta ideointituokiot ja ideaseinä</p></div>
+      <div class="step reveal"><span class="sn">4</span><p>Käynnistä vuosikellon mukaiset toiminnot</p></div>
+      <div class="step reveal"><span class="sn">5</span><p>Kerää palaute ja kehitä toimintaa</p></div>
+    </div>
+    <p class="toivotus reveal">Pienillä teoilla – yhdessä – rakennetaan lapsille aktiivisempi arki.</p>
+  </div>
+</section>
+
+<!-- TAUSTA & YHTEYSTIEDOT -->
+<section class="section" id="yhteystiedot">
+  <div class="wrap tausta-grid">
+    <div class="tausta reveal">
+      <p class="eyebrow">Tausta</p>
+      <h2 style="font-size:clamp(1.8rem,3.6vw,2.4rem);margin-bottom:1rem">Tutkittuun tietoon perustuva malli</h2>
+      <p>Toimintamalli on kehitetty opinnäytetyön tuotoksena. Malli perustuu kyselyihin, osallistavaan työpajaan ja tutkimustietoon lasten fyysisestä aktiivisuudesta, osallisuudesta sekä kodin ja koulun yhteistyöstä.</p>
+    </div>
+    <div class="contact reveal">
+      <h3>Yhteystiedot</h3>
+      <div class="person"><b>Sara Kaikkonen</b><span>Sosionomi (YAMK)</span><a href="mailto:sara.kaikkonen@siunsote.fi">sara.kaikkonen@siunsote.fi</a></div>
+      <div class="person"><b>Pauliina Laurila</b><span>Tradenomi (YAMK)</span></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="brand-f">YHDESSÄ</div>
+    <p>Toimintamalli lasten arkiaktiivisuuden tukemiseen · Kodin ja koulun yhteistyö</p>
+    <p class="img-credit">Sivuston valokuvat ovat Microsoft 365:n kuvapankista ja niiden käyttöoikeudet omistaa Microsoft.</p>
+  </div>
+</footer>
+
+<script>
+// Mobile nav
+const toggle=document.querySelector('.nav-toggle');
+const links=document.querySelector('.nav-links');
+toggle.addEventListener('click',()=>{
+  const open=links.classList.toggle('open');
+  toggle.setAttribute('aria-expanded',open);
+});
+links.addEventListener('click',e=>{if(e.target.tagName==='A'){links.classList.remove('open');toggle.setAttribute('aria-expanded',false);}});
+
+// Reveal on scroll
+const io=new IntersectionObserver((entries)=>{
+  entries.forEach(en=>{if(en.isIntersecting){en.target.classList.add('in');io.unobserve(en.target);}});
+},{threshold:.14});
+document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+
+// Vuosikello slider
+const track=document.getElementById('vkTrack');
+const cards=[...track.children];
+const prev=document.getElementById('vkPrev');
+const next=document.getElementById('vkNext');
+const dotsWrap=document.getElementById('vkDots');
+cards.forEach((_,i)=>{
+  const d=document.createElement('button');
+  d.className='vk-dot'+(i===0?' active':'');
+  d.setAttribute('aria-label',`Kausi ${i+1}`);
+  d.addEventListener('click',()=>cards[i].scrollIntoView({behavior:'smooth',block:'nearest',inline:'start'}));
+  dotsWrap.appendChild(d);
+});
+const dots=[...dotsWrap.children];
+function step(){return cards[1].getBoundingClientRect().left-cards[0].getBoundingClientRect().left||cards[0].offsetWidth+22;}
+prev.addEventListener('click',()=>track.scrollBy({left:-step(),behavior:'smooth'}));
+next.addEventListener('click',()=>track.scrollBy({left:step(),behavior:'smooth'}));
+function update(){
+  const i=Math.round(track.scrollLeft/step());
+  dots.forEach((d,n)=>d.classList.toggle('active',n===i));
+  prev.disabled=track.scrollLeft<8;
+  next.disabled=track.scrollLeft>track.scrollWidth-track.clientWidth-8;
+}
+track.addEventListener('scroll',()=>window.requestAnimationFrame(update));
+window.addEventListener('resize',update);
+update();
+</script>
+</body>
+</html>

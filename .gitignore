@@ -1,0 +1,7 @@
+# Lähdetiedostot ja työkappaleet – ei julkaistavaan repoon
+*.pptx
+*.~lock*
+/Vuosikellon suunnittelua.pdf
+/materiaali/
+/tyylit/
+
