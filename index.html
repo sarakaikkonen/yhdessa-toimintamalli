@@ -72,7 +72,7 @@ a{color:inherit}
 .nav-toggle svg{width:26px;height:26px}
 
 /* ---------- HERO ---------- */
-.hero{position:relative;overflow:hidden;padding-top:clamp(2.4rem,5vw,4rem)}
+.hero{position:relative;overflow:hidden;padding-top:clamp(2.4rem,5vw,4rem);padding-bottom:clamp(1rem,2.5vw,1.6rem)}
 .hero::before{ /* faint vuosikello echo */
   content:"";position:absolute;right:-220px;top:-160px;width:560px;height:560px;border-radius:50%;
   border:1px solid color-mix(in srgb,var(--gold) 45%,transparent);opacity:.5;pointer-events:none;
@@ -109,6 +109,9 @@ a{color:inherit}
 .qn span.d{font-size:.9rem;color:var(--ink-soft)}
 .qn .ar{color:var(--sage);font-weight:600;margin-top:.3rem;transition:transform .2s}
 .qn:hover .ar{transform:translateX(4px)}
+/* hero quick links as pill buttons */
+.hero-links{margin-top:clamp(1.5rem,3vw,2.2rem);display:flex;flex-wrap:wrap;gap:.9rem}
+@media(max-width:560px){.hero-links{flex-direction:column}.hero-links .btn{justify-content:center}}
 
 /* ---------- BUTTONS / ARROW LINKS ---------- */
 .btn{
@@ -324,33 +327,44 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
 <section class="hero section" id="top">
   <div class="wrap hero-grid">
     <div>
-      <p class="eyebrow">Kodin ja koulun yhteinen toimintamalli</p>
+      <p class="eyebrow">Toimintamalli lasten arkiaktiivisuuden tukemiseen</p>
       <h1>YHDESSÄ</h1>
       <p class="tagline">Lisää liikettä lasten arkeen – pienillä teoilla.</p>
       <p class="lead">Kodin ja koulun yhteinen toimintamalli, jonka tavoitteena on edistää lasten arkiaktiivisuutta koulun ja kodin arjessa.</p>
-      <p class="theme-chip">Lukuvuoden teema: Pienillä teoilla lisää liikettä</p>
-      <div class="cta-row">
-        <a class="btn" href="#kayttoonotto">Näin otat mallin käyttöön <span class="ar">→</span></a>
-      </div>
     </div>
     <figure class="hero-figure">
       <img src="kuvia/hero-juoksu.jpg" alt="Joukko alakoululaisia juoksee reput selässä kohti koulun pihaa.">
       <figcaption class="cap">Arkiaktiivisuutta koulun ja kodin arkeen</figcaption>
     </figure>
   </div>
+  <nav class="wrap hero-links" aria-label="Pikalinkit">
+    <a class="btn" href="#vaiheet">Vaiheet <span class="ar">→</span></a>
+    <a class="btn" href="#vuosikello">Vuosikello <span class="ar">→</span></a>
+    <a class="btn" href="#materiaalit">Materiaalit <span class="ar">→</span></a>
+  </nav>
 </section>
 
-<!-- QUICK NAV -->
-<section class="quicknav-wrap">
-  <div class="wrap quicknav">
-    <a class="qn" href="#vaiheet"><span class="qn-k">01</span><b>Vaiheet</b><span class="d">Neljä vaihetta, jotka toistuvat joka lukuvuosi.</span><span class="ar">Katso kierto →</span></a>
-    <a class="qn" href="#vuosikello"><span class="qn-k">02</span><b>Vuosikello</b><span class="d">Lukuvuoden neljä yhteistä kokonaisuutta.</span><span class="ar">Selaa kaudet →</span></a>
-    <a class="qn" href="#materiaalit"><span class="qn-k">03</span><b>Materiaalit</b><span class="d">Valmiit pohjat käyttöönottoon.</span><span class="ar">Avaa pankki →</span></a>
+<!-- MIKSI / KENELLE -->
+<section class="section" id="miksi" style="padding-top:clamp(1rem,2.5vw,1.6rem);padding-bottom:clamp(1.4rem,3vw,2rem)">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <p class="eyebrow">Miksi YHDESSÄ?</p>
+      <h2>Lisää liikettä lasten arkeen</h2>
+      <p>Lasten päivittäinen liikkuminen on vähentynyt, vaikka arkiaktiivisuudella on merkittävä vaikutus hyvinvointiin, oppimiseen ja jaksamiseen. YHDESSÄ-toimintamalli tarjoaa kouluille selkeän ja helposti käyttöönotettavan tavan vahvistaa kodin ja koulun yhteistyötä lasten arkiaktiivisuuden edistämisessä.</p>
+    </div>
+    <div class="sec-head reveal" style="margin:2.6rem 0 1.6rem">
+      <h2 style="font-size:clamp(1.6rem,3.4vw,2.2rem)">Kenelle toimintamalli on tarkoitettu?</h2>
+    </div>
+    <div class="principles">
+      <article class="p-card reveal"><span class="num">Opettajalle</span><h3>Valmiit materiaalit</h3><p>Saat käyttöösi valmiit materiaalit.</p></article>
+      <article class="p-card reveal"><span class="num">Huoltajalle</span><h3>Vinkkejä arkeen</h3><p>Saat vinkkejä lapsen arkiaktiivisuuden tukemiseen.</p></article>
+      <article class="p-card reveal"><span class="num">Koululle</span><h3>Helppo käyttöönotto</h3><p>Saat helposti käyttöönotettavan toimintamallin.</p></article>
+    </div>
   </div>
 </section>
 
 <!-- PERIAATTEET -->
-<section class="section" id="periaatteet">
+<section class="section" id="periaatteet" style="padding-top:clamp(1.6rem,3.5vw,2.6rem)">
   <div class="wrap">
     <div class="sec-head reveal">
       <p class="eyebrow">Periaatteet</p>
@@ -428,8 +442,8 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
       <p class="goal">Luodaan yhteinen ymmärrys kodin, koulun ja oppilaiden välille lasten arkiaktiivisuuden merkityksestä ja yhteisistä toimintaperiaatteista.</p>
       <div class="meta">
         <div class="meta-row"><div class="meta-k">Ajankohta</div><div class="meta-v">Lukuvuoden alussa</div></div>
-        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/aloitusviesti-huoltajille.html" target="_blank" rel="noopener">Aloitusviesti huoltajille</a></li><li><a href="materiaalipankki/suunnitteluillan-runko.html" target="_blank" rel="noopener">Yhteinen suunnitteluilta vanhempainillan yhteydessä</a> (esittely, teema ja lupaus)</li></ul></div></div>
-        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Rehtori ja luokanopettajat sekä oppilashuollon edustaja (esim. koulukuraattori tai terveydenhoitaja).</div></div>
+        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/aloitusviesti-huoltajille.pdf" target="_blank" rel="noopener">Aloitusviesti huoltajille</a></li><li><a href="materiaalipankki/suunnitteluillan-runko.pdf" target="_blank" rel="noopener">Yhteinen suunnitteluilta vanhempainillan yhteydessä</a></li></ul></div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Rehtori ja luokanopettajat, sekä opiskeluhuoltoryhmä</div></div>
       </div>
     </div>
   </div>
@@ -462,7 +476,7 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
       <p class="goal">Lisätään oppilaiden osallisuutta ja vaikutusmahdollisuuksia arkiaktiivisuuden suunnittelussa sekä hyödynnetään heidän näkemyksiään toiminnan kehittämisessä.</p>
       <div class="meta">
         <div class="meta-row"><div class="meta-k">Ajankohta</div><div class="meta-v">Lukuvuoden alussa</div></div>
-        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/oppilaiden-ideointituokio.html" target="_blank" rel="noopener">Oppilaiden ideointituokio luokassa</a></li><li><a href="materiaalipankki/ideaseinan-ohje.html" target="_blank" rel="noopener">Oppilaskunnan ideaseinä</a></li></ul></div></div>
+        <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li><a href="materiaalipankki/oppilaiden-ideointituokio.pdf" target="_blank" rel="noopener">Oppilaiden ideointituokio luokassa</a></li><li><a href="materiaalipankki/ideaseinan-ohje.pdf" target="_blank" rel="noopener">Oppilaskunnan ideaseinä</a></li></ul></div></div>
         <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Luokanopettajat (ideointituokiot), oppilaskunta (ideaseinä) ja oppilaat.</div></div>
       </div>
     </div>
@@ -511,14 +525,13 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
         </div>
       </article>
       <article class="vk-card" style="--tint:var(--autumn)">
-        <div class="vk-img"><span class="vk-season">Loka–marraskuu</span><img src="kuvia/hero-juoksu.jpg" alt="Lapsia juoksemassa."></div>
+        <div class="vk-img"><span class="vk-season">Loka–marraskuu</span><img src="kuvia/kausi-syksy.jpg" alt="Lapsia ulkoiluvarusteissa ja kumisaappaissa syksyisellä säällä."></div>
         <div class="vk-body">
-          <h3>Luokkien välinen arkiliikkumishaaste</h3>
-          <p class="vk-goal">Lisätään lasten motivaatiota liikkua ja vahvistetaan yhteisöllisyyttä. Haaste kestää neljä viikkoa.</p>
+          <h3>YHDESSÄ-arkiliikkumishaaste</h3>
+          <p class="vk-goal">Koko koulun yhteinen neljän viikon haaste, jonka tavoitteena on lisätä lasten päivittäistä arkiaktiivisuutta ja vahvistaa yhteisöllisyyttä.</p>
           <ul>
-            <li>Hyväksytään mm. aktiiviset koulumatkat, välitunti- ja harrastusliikunta sekä ulkoilu</li>
-            <li>Tulokset julkaistaan ilmoitustaululla tai Wilmassa</li>
-            <li>Haaste päätetään yhteiseen palkitsemiseen</li>
+            <li>Huomioidaan koulupäivän lisäksi myös vapaa-ajan arkiaktiivisuus: aktiiviset koulumatkat, ulkoilu ja aktiiviset kotityöt</li>
+            <li>Haasteen <a href="materiaalipankki/arkiliikkumishaaste-ohje.pdf" target="_blank" rel="noopener">ohjeistus</a> ja <a href="materiaalipankki/arkiliikkumishaaste-seuranta.pdf" target="_blank" rel="noopener">seurantalomake</a> löytyvät materiaalipankista</li>
           </ul>
         </div>
       </article>
@@ -538,11 +551,12 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
         <div class="vk-img"><span class="vk-season">Huhti–toukokuu</span><img src="kuvia/kausi-kevat.jpg" alt="Värikkäitä polkupyöriä rivissä."></div>
         <div class="vk-body">
           <h3>Koulumatkahaaste</h3>
-          <p class="vk-goal">Vahvistetaan aktiivisia koulumatkoja osana päivittäistä elämäntapaa. Haaste kestää neljä viikkoa.</p>
+          <p class="vk-goal">Vahvistetaan aktiivisia koulumatkoja osana päivittäistä elämäntapaa. Haaste kestää kaksi viikkoa.</p>
           <ul>
             <li>Oppilas kirjaa päivittäin aktiivisesti kuljetut koulumatkat</li>
             <li>Tuloksia seurataan luokittain</li>
             <li>Huoltajat kannustavat ja huolehtivat turvallisuudesta</li>
+            <li>Koulumatkahaasteen <a href="materiaalipankki/koulumatkahaaste-ohje.pdf" target="_blank" rel="noopener">ohjeistus</a> ja <a href="materiaalipankki/koulumatkahaaste-seuranta.pdf" target="_blank" rel="noopener">seurantalomake</a> löytyvät materiaalipankista</li>
           </ul>
         </div>
       </article>
@@ -561,7 +575,7 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
       <p class="goal">Arvioidaan toiminnan toteutumista, hyödynnetään osallistujien kokemuksia ja kehitetään toimintaa palautteen perusteella seuraavaa lukuvuotta varten.</p>
       <div class="meta">
         <div class="meta-row"><div class="meta-k">Työkalut</div><div class="meta-v"><ul><li>YHDESSÄ-palautekysely <a href="materiaalipankki/palautekysely-oppilaat.pdf" target="_blank" rel="noopener">oppilaille</a>, <a href="materiaalipankki/palautekysely-huoltajat.pdf" target="_blank" rel="noopener">huoltajille</a> ja <a href="materiaalipankki/palautekysely-henkilosto.pdf" target="_blank" rel="noopener">henkilöstölle</a></li><li>Kehittämispalaveri: Kyselyn tulokset käsitellään esimerkiksi opettajakokouksessa, yhteisöllisessä opiskeluhuoltoryhmässä tai YHDESSÄ-toimintamallista vastaavan työryhmän kokouksessa. Palaverissa päätetään mitä jatketaan, mitä muutetaan ja mitä uusia ideoita otetaan käyttöön.</li></ul></div></div>
-        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Koulun henkilöstö ja oppilashuoltoryhmä, oppilaat ja huoltajat.</div></div>
+        <div class="meta-row"><div class="meta-k">Vastuut</div><div class="meta-v">Koulun henkilöstö ja opiskeluhuoltoryhmä, oppilaat ja huoltajat.</div></div>
       </div>
     </div>
   </div>
@@ -576,11 +590,15 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
       <p>Materiaalit avautuvat uuteen välilehteen.</p>
     </div>
     <div class="mat-grid">
-      <a class="mat-item reveal" href="materiaalipankki/aloitusviesti-huoltajille.html" target="_blank" rel="noopener"><span class="mt"><b>Aloitusviesti huoltajille</b><span>Yhdistetään · Wilma-viesti</span></span><span class="ar">→</span></a>
-      <a class="mat-item reveal" href="materiaalipankki/suunnitteluillan-runko.html" target="_blank" rel="noopener"><span class="mt"><b>Suunnitteluillan runko</b><span>Yhdistetään</span></span><span class="ar">→</span></a>
-      <a class="mat-item reveal" href="materiaalipankki/yhdessa-lupaus.html" target="_blank" rel="noopener"><span class="mt"><b>YHDESSÄ-lupaus</b><span>Yhdistetään</span></span><span class="ar">→</span></a>
-      <a class="mat-item reveal" href="materiaalipankki/oppilaiden-ideointituokio.html" target="_blank" rel="noopener"><span class="mt"><b>Oppilaiden ideointituokio</b><span>Osallistetaan · ohje</span></span><span class="ar">→</span></a>
-      <a class="mat-item reveal" href="materiaalipankki/ideaseinan-ohje.html" target="_blank" rel="noopener"><span class="mt"><b>Ideaseinän ohje</b><span>Osallistetaan</span></span><span class="ar">→</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/aloitusviesti-huoltajille.pdf" target="_blank" rel="noopener"><span class="mt"><b>Aloitusviesti huoltajille</b><span>Yhdistetään · Wilma-viesti</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/suunnitteluillan-runko.pdf" target="_blank" rel="noopener"><span class="mt"><b>Suunnitteluillan runko</b><span>Yhdistetään</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/yhdessa-lupaus.pdf" target="_blank" rel="noopener"><span class="mt"><b>YHDESSÄ-lupaus</b><span>Yhdistetään</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/oppilaiden-ideointituokio.pdf" target="_blank" rel="noopener"><span class="mt"><b>Oppilaiden ideointituokio</b><span>Osallistetaan · ohje</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/ideaseinan-ohje.pdf" target="_blank" rel="noopener"><span class="mt"><b>Ideaseinän ohje</b><span>Osallistetaan</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/arkiliikkumishaaste-ohje.pdf" target="_blank" rel="noopener"><span class="mt"><b>YHDESSÄ-arkiliikkumishaaste · ohje</b><span>Mahdollistetaan</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/arkiliikkumishaaste-seuranta.pdf" target="_blank" rel="noopener"><span class="mt"><b>Arkiliikkumishaaste · seurantalomake</b><span>Mahdollistetaan</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/koulumatkahaaste-ohje.pdf" target="_blank" rel="noopener"><span class="mt"><b>YHDESSÄ-koulumatkahaaste · ohje</b><span>Mahdollistetaan</span></span><span class="pdf-tag">PDF</span></a>
+      <a class="mat-item reveal" href="materiaalipankki/koulumatkahaaste-seuranta.pdf" target="_blank" rel="noopener"><span class="mt"><b>Koulumatkahaaste · seurantalomake</b><span>Mahdollistetaan</span></span><span class="pdf-tag">PDF</span></a>
       <a class="mat-item reveal" href="materiaalipankki/palautekysely-oppilaat.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · oppilaat</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
       <a class="mat-item reveal" href="materiaalipankki/palautekysely-huoltajat.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · huoltajat</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
       <a class="mat-item reveal" href="materiaalipankki/palautekysely-henkilosto.pdf" target="_blank" rel="noopener"><span class="mt"><b>Palautekysely · henkilöstö</b><span>Kehitetään</span></span><span class="pdf-tag">PDF</span></a>
@@ -651,7 +669,6 @@ footer .img-credit{font-size:.72rem;color:color-mix(in srgb,var(--paper) 58%,tra
   <div class="wrap">
     <div class="brand-f">YHDESSÄ</div>
     <p>Toimintamalli lasten arkiaktiivisuuden tukemiseen · Kodin ja koulun yhteistyö</p>
-    <p class="img-credit">Sivuston valokuvat ovat Microsoft 365:n kuvapankista ja niiden käyttöoikeudet omistaa Microsoft.</p>
   </div>
 </footer>
 
